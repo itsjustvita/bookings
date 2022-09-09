@@ -1,11 +1,13 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"github.com/alexedwards/scs/v2"
-	"github.com/itsjustvita/bookings/pkg/config"
-	"github.com/itsjustvita/bookings/pkg/handlers"
-	"github.com/itsjustvita/bookings/pkg/render"
+	"github.com/itsjustvita/bookings/internal/config"
+	"github.com/itsjustvita/bookings/internal/handlers"
+	"github.com/itsjustvita/bookings/internal/models"
+	"github.com/itsjustvita/bookings/internal/render"
 	"log"
 	"net/http"
 	"time"
@@ -18,6 +20,8 @@ var session *scs.SessionManager
 
 // main is the main function
 func main() {
+	// What am I going to pu in the session
+	gob.Register(models.Reservation{})
 	// change this to true when in production
 	app.InProduction = false
 
